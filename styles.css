@@ -1,8 +1,3 @@
-/* ====================================
-   Reset & Base Styles
-   ==================================== */
-
-/* Array Font Family */
 @font-face {
   font-family: 'Array';
   src: url('Fonts/WEB/fonts/Array-Bold.woff2') format('woff2'),
@@ -179,14 +174,13 @@ body {
     justify-content: center;
     position: relative;
     padding: 120px var(--spacing-md) var(--spacing-lg);
-    background-image: url(/images/pexels-d-ng-nhan-324384-2232917.jpg);
+    background-image: url(images/pexels-d-ng-nhan-324384-2232917.jpg);
     background-size: cover;
     background-position: bottom;
     background-attachment: fixed;
     overflow: hidden;
 }
 
-/* Overlay para transición suave del hero */
 .hero::after {
     content: '';
     position: absolute;
@@ -438,7 +432,6 @@ body {
     border-radius: 2px;
 }
 
-/* Fade In Animation */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -522,7 +515,6 @@ body {
     color: var(--sky-light);
 }
 
-/* Colores específicos para cada tecnología */
 .tech-item[data-tech="java"] .tech-icon i {
     color: #f89820;
 }
@@ -559,7 +551,7 @@ body {
 }
 
 .big-section {
-    background-image: url(/images/pexels-disha-sheta-596631-3584430.jpg);
+    background-image: url(images/pexels-disha-sheta-596631-3584430.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -568,7 +560,6 @@ body {
     z-index: 1;
 }
 
-/* Overlays para transiciones suaves de big-section */
 .big-section::before {
     content: '';
     position: absolute;
