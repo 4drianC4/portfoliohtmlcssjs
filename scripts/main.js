@@ -86,12 +86,43 @@ const animateStats = () => {
     });
 };
 
+const loadGitHubStats = async () => {
+    try {
+        const username = '4drianC4';
+        const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar datos de GitHub');
+        }
+        
+        const repos = await response.json();
+        
+        const totalRepos = repos.length;
+        const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+        
+        const statValues = document.querySelectorAll('.github-stats .stat-value');
+        if (statValues.length >= 3) {
+            statValues[0].setAttribute('data-target', totalRepos);
+            statValues[1].setAttribute('data-target', totalStars);
+            statValues[2].setAttribute('data-target', totalForks);
+        }
+        
+    } catch (error) {
+        console.error('Error cargando stats de GitHub:', error);
+        const statValues = document.querySelectorAll('.github-stats .stat-value');
+        statValues.forEach(stat => stat.textContent = '0');
+    }
+};
+
 const statsSection = document.querySelector('.github-stats');
 if (statsSection) {
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateStats();
+                loadGitHubStats().then(() => {
+                    animateStats();
+                });
                 statsObserver.unobserve(entry.target);
             }
         });
